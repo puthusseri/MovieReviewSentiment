@@ -9,13 +9,13 @@ Just trying to scrap imdb and anlysing the review sentiment.
  - Install [anaconda](https://www.anaconda.com/products/individual)
  - To reproduce the environment, run the below code after installing the anaconda<br />
  ```sh
-	conda env create -f environment.yml
+conda env create -f environment.yml
 
  ```
  - No all the dependencies will be downloaded in your system
  - Activate the environment by<br/>
  ```sh
- 	conda env create -f environment.yml
+ conda env create -f environment.yml
  ```
  
 
