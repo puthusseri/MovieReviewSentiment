@@ -1,0 +1,32 @@
+
+  <script src="/static/jquery-1.9.1.js"></script>
+<script>
+     // for submitting the movie name for loading the reviews from imdb
+     $('#submitMovieName').click(function () {
+        // alert("wok");
+        $.ajax({
+          url: "/submitMovieName",
+          type: "get",
+          data : {
+            'movieName': $('#movieNameForSearch').val()
+          },
+          success: function (response) {
+            $('#root').html(response);
+          },
+          error: function (xhr) {
+            alert("Error");
+          }
+        });
+      });
+</script>
+<div class="cards-header">
+</div>
+
+<div class="cards card">
+ <input type="text" class="tparent" id="movieNameForSearch" value="" placeholder="Enter the movie name to search"  name="movieNameForSearch">
+</div>
+<br>
+
+
+
+<div id="submitMovieName" class="button offer-button" style="margin-top: 100px; height: 20%;font-size: x-large;">CHECK SENTIMENT</div>

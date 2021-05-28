@@ -1,0 +1,49 @@
+
+  <script src="/static/jquery-1.9.1.js"></script>
+  <style>
+    #movieLinkForSearch{
+  background:transparent;
+  border:none;
+  border-left:4px red solid;
+  height:45px;
+  width:100%;
+  line-height:45px;
+  font-size:40px;
+  outline:0px;
+  padding-right:50px;
+  color: whitesmoke;
+}
+#movieLinkForSearch:focus{
+  border-bottom:1px red solid;
+}
+  </style>
+<script>
+     // for submitting the movie link for loading the reviews from imdb
+     $('#submitMovieLink').click(function () {
+        // alert("wok");
+        $.ajax({
+          url: "/submitMovieLink",
+          type: "get",
+          data : {
+            'movieLink': $('#movieLinkForSearch').val()
+          },
+          success: function (response) {
+            $('#root').html(response);
+          },
+          error: function (xhr) {
+            alert("Error");
+          }
+        });
+      });
+</script>
+<div class="cards-header">
+</div>
+
+<div class="cards card">
+ <input type="text" class="tparent" id="movieLinkForSearch" value="" placeholder="Enter the movie link to search"  name="movieLinkForSearch">
+</div>
+<br>
+
+
+
+<div id="submitMovieLink" class="button offer-button" style="margin-top: 100px; height: 20%;font-size: x-large;">CHECK SENTIMENT</div>
