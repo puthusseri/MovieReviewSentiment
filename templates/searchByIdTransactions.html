@@ -1,0 +1,51 @@
+<script>
+    $('document').ready(function(){
+        $('#searchById').click(function (){
+        $.ajax({
+          url: "/searchTranasactionByid",
+          type: "get",
+          data: {
+              'user_id' : $('#movieNameForSearch').val() 
+          },
+          success: function (response) {
+                
+                $('#root').html(response);
+
+                
+          },
+          error: function (xhr) {
+            alert("Error");
+          }
+        });
+      }
+
+      );
+    });
+</script>
+<div class="cards card">
+    <input type="text" class="tparent" id="movieNameForSearch" value="" placeholder="Enter the use id to search"  name="movieNameForSearch">
+</div>
+    <br>
+    
+    <style>
+        #submitsearchByIdMovieName{
+        
+        background: #282F32;
+        border: 2px solid #f1c40f;
+        border-radius: 0.6em;
+        color:white;
+        align-self: center;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1;
+        padding: 1.2em 2.8em;
+        width:100%;
+    }
+    #searchById:hover{
+    background-color:#f1c40f;
+    color:black;
+    box-shadow: 0 0 40px #7986CB;
+    }
+    </style>
+    
+    <div id="searchById" class="button offer-button" style="margin-top: 50px; height: 20%;font-size: x-large;">DISPLAY</div>

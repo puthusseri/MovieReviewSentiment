@@ -1,0 +1,80 @@
+<html>
+
+<head>
+    <title>Edit Text Live On Input</title>
+    <meta charset="utf-8" />
+    <style>
+        * {
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input, textarea {
+    display: block;
+    width: 680px;
+    height: 40px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #14213d;
+    border: 2px solid #8d99ae;
+    border-radius: 20px;
+    margin: 20px auto;
+    outline: none;
+
+}
+
+textarea {
+    height: 250px;
+    font-size: 18px;
+}
+
+.live {
+    margin: auto;
+    background-color: #e9ecef;
+    width: 680px;
+    padding: 10px;
+    border-radius: 20px;
+    border: #8d99ae;
+    box-shadow: 2px 2px 2px #ccc;
+
+}
+
+.live h2 {
+    text-align: center;
+    font-size: 24px;
+    text-decoration: underline;
+    color: brown;
+    word-wrap: break-word
+}
+
+.live p {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: justify;
+    word-wrap: break-word;
+    line-height: 1.8;
+}
+
+.live p::first-letter {
+    text-transform: capitalize;
+}
+
+
+    </style>
+</head>
+<body>
+    <form>
+        <input id="input" placeholder= "Enter the type of text"/>
+        <textarea id="textarea" placeholder="Enter your text here"></textarea>
+    </form>
+    <div class="live">
+        <h2></h2>
+        <p></p>
+    </div>
+    <script src="Edit-Text-Live-On-Input.js"></script>
+</body>
+</html>

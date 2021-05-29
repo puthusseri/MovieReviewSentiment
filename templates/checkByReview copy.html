@@ -54,7 +54,7 @@
 
     .container {
         position: absolute;
-        top: 78%;
+        top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         height: 12vw;
@@ -249,11 +249,8 @@
 <script>
 
     $(document).ready(function () {
-        $('#submitButtonForReviewSubmition').click(function () {
+        $('#submitButtonDummy').click(function () {
             console.log("Entering");
-            var userInputTypeOftext = $('#userInputTypeOftext').val();
-            var userInputReview = $('#userInput').val();
-            var feedBackOfReview = "";
             $.ajax({
                 url: "/analyseReview",
                 type: "get",
@@ -265,39 +262,16 @@
                     if (response == "1") {
                         document.getElementById('sentimentScore2').innerHTML = "😊";
                         // $('#result').val("Positive Review");
-                        feedBackOfReview = "This review is having positive sentiment.";
                         $('#outputArea').html("This review is having positive sentiment.");
                     }
                     else if (response == "0") {
                         document.getElementById('sentimentScore2').innerHTML = "☹️";
                         $('#result').val("negative Review");
-                        feedBackOfReview = "This review is having negative sentiment.";
                         $('#outputArea').html("This review is having negative sentiment.");
                     }
                     else {
-                        feedBackOfReview = "Invalid grammar in the review text.";
                         $('#outputArea').html("Invalid grammar in the review text");
                     }
-                    // store the resulting content to the database
-                    // make another ajax call for that 
-                    $.ajax({
-                        url: "/storeReviewFeedBackToDB",
-                        type: "get",
-                        data: {
-                            'typeOfContent' : userInputTypeOftext,
-                            'movie_review': $('#userInput').val(),
-                            'feedback' : feedBackOfReview,
-                            'user_id' : getCookie('user_id')
-                        },
-                        success: function (response) {
-                           alert("Result stored to database");
-                            
-                        },
-                        error: function (xhr) {
-                            alert("Error");
-                        }
-                    });
-
                 },
                 error: function (xhr) {
                     alert("Error");
@@ -350,42 +324,34 @@
                 border-top: 1px solid rgba(255, 0, 0, 0.3);
             }
 
-          
-             input, textarea {
-                display: block;
-                width: 680px;
-                height: 40px;
-                padding: 10px;
-                font-weight: bold;
-                font-size: 20px;
-                color: white;
-                background-color: #282F32;
-                border: 2px solid #8d99ae;
-                border-radius: 20px;
-                margin: 20px auto;
-                outline: none;
-
-
-            }
-
             textarea {
-                height: 250px;
-                font-size: 18px;
+                height: 100%;
+                padding: 0px;
+                margin: 0px;
+                margin-left: 10px;
+                margin-right: 10px;
+                background: transparent;
+                border: none;
+                line-height: 20px;
+                font-size: 14px;
+                width: calc(100% - 20px);
+                outline: 0;
+                resize: none;
+                font-family: monospace;
+                color: rgba(0, 0, 0, 0.5);
             }
         </style>
 
 
         <br>
-        <!-- <div class="paperwrapper">
+        <div class="paperwrapper">
             <div class="paper">
                 <div class="textwrapper">
                     <textarea maxlength="700" id="userInput" name="userInput" value={{result}} class="input"
                         placeholder="Paste review here..." autocomplete="off"></textarea>
                 </div>
             </div>
-        </div> -->
-        <input id="userInputTypeOftext" placeholder= "Enter the type of text"/>
-        <textarea id="userInput" placeholder="Enter your text here"></textarea>
+        </div>
         <input type="submit" id="submitingButtonForReview" style="display: none;">
     </form>
     <div id="outputArea" style="color:white;float: right;padding-right: 142px;border: 10px;">

@@ -6,43 +6,6 @@
   <link rel="stylesheet" href="/static/style.css">
 
   <script>
-    function findByName(name){
-      // alert(name);
-      $.ajax({
-          url: "/submitMovieName",
-          type: "get",
-          data : {
-            'movieName': name
-          },
-          success: function (response) {
-            $('#root').html(response);
-          },
-          error: function (xhr) {
-            alert("Error");
-          }
-        });
-    }
-    function getCookie(name) {
-    // Add the = sign
-    name = name + '=';
-    // Get the decoded cookie
-    var decodedCookie = decodeURIComponent(document.cookie);
-  
-    // Get all cookies, split on ; sign
-    var cookies = decodedCookie.split(';');
-  
-    // Loop over the cookies
-    for (var i = 0; i < cookies.length; i++) {
-      // Define the single cookie, and remove whitespace
-      var cookie = cookies[i].trim();
-  
-      // If this cookie has the name of what we are searching
-      if (cookie.indexOf(name) == 0) {
-        // Return everything after the cookies name
-        return cookie.substring(name.length, cookie.length);
-      }
-    }
-  }
     function checkTime(i) {
       if (i < 10) {
         i = "0" + i;
@@ -63,128 +26,10 @@
         startTime()
       }, 500);
     }
-    $(document).ready(function () {
-      startTime();
-      $('#nameOfTheUser').text(getCookie('name'));
-      $('#nameuserIdToDisplayOfTheUser').text(getCookie('user_id'));
-      
-      $.ajax({
-          url: "/goToEnterMovieReview",
-          type: "get",
-          success: function (response) {
-            $('#root').html(response);
-            $('.header').find('.active').removeClass('active');
-            $('#goToEnterMovieReview').addClass('active');
-          },
-          error: function (xhr) {
-            alert("Error");
-          }
-        });
-      // $('#loadTheCheckbyMovieReview').html('checkByReview');
-    });
+    
 
       // for changing the home page
     $(document).ready(function () {
-      $('#homeButton').click(function () {
-        $.ajax({
-          url: "/home",
-          type: "get",
-          success: function (response) {
-            $('#root').html(response);
-            $('.header').find('.active').removeClass('active');
-            $('#homeButton1').addClass('active');
-            console.log("Works");
-          },
-          error: function (xhr) {
-            alert("Error");
-          }
-        });
-      });
-
-      $('#homeButton1').click(function () {
-        $.ajax({
-          url: "/home",
-          type: "get",
-          success: function (response) {
-            $('#root').html(response);
-            console.log("Works");
-            $('.header').find('.active').removeClass('active');
-            $('#homeButton1').addClass('active');
-          },
-          error: function (xhr) {
-            alert("Error");
-          }
-        });
-        
-      }); 
-      // for loading the contact page
-      $('#contactButton').click(function () {
-        $.ajax({
-          url: "/contactPage",
-          type: "get",
-          success: function (response) {
-            console.log("Works");
-            $('#root').html(response);
-            $('.header').find('.active').removeClass('active');
-            $('#homeButton1').addClass('active');
-          },
-          error: function (xhr) {
-            alert("Error");
-          }
-        });
-      });
-
-      // for loading the page with the movie name search
-      $('#goToSearchByMovieName').click(function () {
-        $.ajax({
-          url: "/redirectToSearchMovieByName",
-          type: "get",
-          success: function (response) {
-            $('#root').html(response);
-            $('.header').find('.active').removeClass('active');
-            $('#goToSearchByMovieName').addClass('active');
-          },
-          error: function (xhr) {
-            alert("Error");
-          }
-        });
-      });
-
-      // for loading the page with the movie name search
-      $('#goToEnterMovieLink').click(function () {
-        $.ajax({
-          url: "/redirectToSearchMovieByLink",
-          type: "get",
-          success: function (response) {
-            $('#root').html(response);
-            $('.header').find('.active').removeClass('active');
-            $('#goToEnterMovieLink').addClass('active');
-          },
-          error: function (xhr) {
-            alert("Error");
-          }
-        });
-      });
-
-      
-
-      // for loading the page with the movie review entering
-      $('#goToEnterMovieReview').click(function () {
-        $.ajax({
-          url: "/goToEnterMovieReview",
-          type: "get",
-          success: function (response) {
-            $('#root').html(response);
-            $('.header').find('.active').removeClass('active');
-            $('#goToEnterMovieReview').addClass('active');
-          },
-          error: function (xhr) {
-            alert("Error");
-          }
-        });
-      });
-      
-      
       // for logging out
       $('#logoutButton').click(function () {
         $.ajax({
@@ -200,10 +45,48 @@
         });
       });
 
+      
+
 
       
-     
-     
+      $('#goToSearchByMovieName').click(function (){
+        $.ajax({
+          url: "/searchTranasactions",
+          type: "get",
+    
+          success: function (response) {
+                
+                $('#root').html(response);
+                $('.header').find('.active').removeClass('active');
+                $('#goToSearchByMovieName').addClass('active');
+          },
+          error: function (xhr) {
+            alert("Error");
+          }
+        });
+      }
+
+      );
+      
+      $('#goToEnterMovieReview').click(function (){
+        $.ajax({
+          url: "/loadSearchById",
+          type: "get",
+    
+          success: function (response) {
+                
+                $('#root').html(response);
+                $('.header').find('.active').removeClass('active');
+                $('#goToSearchByMovieName').addClass('active');
+          },
+          error: function (xhr) {
+            alert("Error");
+          }
+        });
+      }
+
+      );
+
     });
   </script>
 </head>
@@ -213,14 +96,7 @@
 
   <div class="wrapper">
     <div class="left-side">
-      <svg viewBox="0 1 511 512" fill="currentColor" id="homeButton">
-        <path
-          d="M498.7 222.7L289.8 13.8a46.8 46.8 0 00-66.7 0L14.4 222.6l-.2.2A47.2 47.2 0 0047 303h8.3v153.7a55.2 55.2 0 0055.2 55.2h81.7a15 15 0 0015-15V376.5a25.2 25.2 0 0125.2-25.2h48.2a25.2 25.2 0 0125.1 25.2V497a15 15 0 0015 15h81.8a55.2 55.2 0 0055.1-55.2V303.1h7.7a47.2 47.2 0 0033.4-80.4zm-21.2 45.4a17 17 0 01-12.2 5h-22.7a15 15 0 00-15 15v168.7a25.2 25.2 0 01-25.1 25.2h-66.8V376.5a55.2 55.2 0 00-55.1-55.2h-48.2a55.2 55.2 0 00-55.2 55.2V482h-66.7a25.2 25.2 0 01-25.2-25.2V288.1a15 15 0 00-15-15h-23A17.2 17.2 0 0135.5 244L244.4 35a17 17 0 0124.2 0l208.8 208.8v.1a17.2 17.2 0 010 24.2zm0 0" />
-      </svg>
-      <svg viewBox="0 0 512 512" fill="currentColor" id="contactButton">
-        <path
-          d="M467 76H45a45 45 0 00-45 45v270a45 45 0 0045 45h422a45 45 0 0045-45V121a45 45 0 00-45-45zm-6.3 30L287.8 278a44.7 44.7 0 01-63.6 0L51.3 106h409.4zM30 384.9V127l129.6 129L30 384.9zM51.3 406L181 277.2l22 22c14.2 14.1 33 22 53.1 22 20 0 38.9-7.9 53-22l22-22L460.8 406H51.3zM482 384.9L352.4 256 482 127V385z" />
-      </svg>
+      <!--  -->
       <svg viewBox="0 0 512 512" fill="currentColor" id="logoutButton">
         <path
           d="M255.2 468.6H63.8a21.3 21.3 0 01-21.3-21.2V64.6c0-11.7 9.6-21.2 21.3-21.2h191.4a21.2 21.2 0 100-42.5H63.8A63.9 63.9 0 000 64.6v382.8A63.9 63.9 0 0063.8 511H255a21.2 21.2 0 100-42.5z" />
@@ -251,25 +127,17 @@
               d="M21.3 23H2.6A2.8 2.8 0 010 20.2V3.9C0 2.1 1.2 1 2.8 1h18.4C22.9 1 24 2.2 24 3.8v16.4c0 1.6-1.2 2.8-2.8 2.8zM2.6 2.5c-.6 0-1.2.6-1.2 1.3v16.4c0 .7.6 1.3 1.3 1.3h18.4c.7 0 1.3-.6 1.3-1.3V3.9c0-.7-.6-1.3-1.3-1.3z" />
             <path d="M23.3 6H.6a.8.8 0 010-1.5h22.6a.8.8 0 010 1.5z" />
           </svg>
-          Check By Movie Name
+          Display All
         </a>
-        <a class="header-link" id="goToEnterMovieReview"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"
+        <a class="header-link active" id="goToEnterMovieReview"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"
             fill="currentColor">
             <path
               d="M500 113.3C326.1 78.7 337.4 80.5 333.4 81.2L281 91.7A111.2 111.2 0 00176 17c-48.6 0-90 31.3-105 74.8L18 81.3A15 15 0 000 96v352a15 15 0 0012 14.7l162.2 32.2c3.6.4-7.6 2.3 161.8-31.6l158 31.4a15 15 0 0018-14.7V128a15 15 0 00-12-14.7zM176 47a81 81 0 0181 81c0 37.7-60.3 133.3-81 165-20.7-31.6-81-127.3-81-165a81 81 0 0181-81zM30 114.2l35.2 7a112 112 0 00-.2 6.8c0 25 16.4 65.4 50 123.4 19.7 33.9 39 63 46 73.2v137.1l-131-26zm161 210.4c7-10.2 26.3-39.3 46-73.2 33.6-58 50-98.4 50-123.4 0-2.3 0-4.6-.2-6.9l34.2-6.8v321.4l-130 26zm291 137.1l-131-26V114.3l131 26z" />
             <path d="M176 175a47 47 0 10-.1-94.1 47 47 0 00.1 94zm0-64a17 17 0 110 34 17 17 0 010-34z" />
           </svg>
-          Check By Movie Review
+          Display by user
         </a>
-        <a class="header-link" id="goToEnterMovieLink"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor">
-            <path
-              d="M76 240c12.1 0 23.1-4.8 31.2-12.6l44.2 22A44.9 44.9 0 00196 300a45 45 0 0040.6-64.4l60-60a45 45 0 0062.3-54l52.2-39.2a45 45 0 10-18-24l-52.2 39.2a45 45 0 00-65.5 56.8l-60 60a44.7 44.7 0 00-50.6 8.2l-44.2-22A44.9 44.9 0 0076 150a45 45 0 000 90zM436 30a15 15 0 110 30 15 15 0 010-30zm-120 90a15 15 0 110 30 15 15 0 010-30zM196 240a15 15 0 110 30 15 15 0 010-30zM76 180a15 15 0 110 30 15 15 0 010-30zm0 0" />
-            <path
-              d="M497 482h-16V165a15 15 0 00-15-15h-60a15 15 0 00-15 15v317h-30V255a15 15 0 00-15-15h-60a15 15 0 00-15 15v227h-30V375a15 15 0 00-15-15h-60a15 15 0 00-15 15v107h-30V315a15 15 0 00-15-15H46a15 15 0 00-15 15v167H15a15 15 0 100 30h482a15 15 0 100-30zm-76-302h30v302h-30zm-120 90h30v212h-30zM181 390h30v92h-30zM61 330h30v152H61zm0 0" />
-          </svg>
-          Check By Review Link
-        </a>
+       
         <div class="user-info">
 
 
@@ -280,7 +148,7 @@
         </div>
       </div>
       <div class="user-box first-box">
-        <div class="activity card" style="--delay: .2s">
+        <div class="activity card" style="--delay: .2s; display:none;">
           <div class="title" id="mainTitle">Sentiment Analysis on on Text</div>
         </div>
 
@@ -294,25 +162,44 @@
               <div class="blob"></div>
               <div class="blob"></div>
             </div>
-            <div class="account-name" id="nameOfTheUser">Vyshak Puthusseri</div>
-            <div class="account-title" id="userIdToDisplay"></div>
+            <div class="account-name" id="nameOfTheUser">ADMIN</div>
+            <div class="account-title"></div>
           </div>
 
         </div>
       </div>
       <div class="user-box second-box">
-        <div class="cards-wrapper" style="--delay: 1s" id="root">
-          <div class="cards-header" id="loadTheCheckbyMovieReview">
-
-          </div>
-          
-          
-          
+       <div id="root">
+        <div class="cards card">
+            <input type="text" class="tparent" id="movieNameForSearch" value="" placeholder="Enter the use id to search"  name="movieNameForSearch">
         </div>
+            <br>
+            
+            <style>
+                #submitsearchByIdMovieName{
+                
+                background: #282F32;
+                border: 2px solid #f1c40f;
+                border-radius: 0.6em;
+                color:white;
+                align-self: center;
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1;
+                padding: 1.2em 2.8em;
+                width:100%;
+            }
+            #searchById:hover{
+            background-color:#f1c40f;
+            color:black;
+            box-shadow: 0 0 40px #7986CB;
+            }
+            </style>
+            
+            <div id="searchById" class="button offer-button" style="margin-top: 50px; height: 20%;font-size: x-large;">DISPLAY</div>
+            </div>
 
-
-
-      </div>
+    </div>
 
 </body>
 

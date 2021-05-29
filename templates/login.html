@@ -1,0 +1,257 @@
+<html>
+    <head>
+        <title>Login Page</title>
+        <script>
+            
+            
+            function register() {
+                var x = document.getElementById("login");
+            var y = document.getElementById("register");
+            var z = document.getElementById("btn");
+              x.style.left = "-400px";
+              y.style.left = "50px";
+              z.style.left = "110px";
+              document.getElementById("headingText").innerHTML = "Registration Page";
+              document.getElementById("loginButton").classList.remove("activeButton");
+              document.getElementById("registerButton").classList.add("activeButton");
+            }
+            
+            function login() {
+                var x = document.getElementById("login");
+            var y = document.getElementById("register");
+            var z = document.getElementById("btn");
+              x.style.left = "50px";
+              y.style.left = "450px";
+              z.style.left = "0px";
+
+              document.getElementById("headingText").innerHTML = "Login Page";
+
+              document.getElementById("loginButton").classList.add("activeButton");
+              document.getElementById("registerButton").classList.remove("activeButton");
+            }
+            
+            </script>
+            <style>
+                * {
+              margin: 0;
+              padding: 0;
+              font-family: "Poppins", sans-serif;
+            }
+            body {
+                background-color: #2c3338;
+                color: #606468;
+                font-family: "Open Sans", sans-serif;
+                font-size: 0.875rem;
+                font-weight: 400;
+                line-height: 1.5;
+                margin: 0;
+                min-height: 100vh;
+            }
+            .heading {
+                position: relative;
+                margin: 0 0 30px;
+                padding-bottom: 30px;
+                text-align: center;
+                font-size: 30px;
+                letter-spacing: 0.06em;
+                padding-top: 20px;
+                }
+
+                .heading:before {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    left: 50%;
+                    transform:translateX(-50%);
+                    bottom: 0;
+                    width: 50px;
+                    height: 6px;
+                    border-left: 50px solid #f12735;
+                    background-color: #1598e3;
+                }
+                .heading:after {
+                content: "";
+                display: block;
+                position: absolute;
+                right: 50%;
+                bottom: 0;
+                border-right: 3px solid #1598e3;
+                border-bottom: 3px solid #1598e3;
+                border-top: 3px solid transparent;
+                border-left: 3px solid transparent;
+                }
+            .hero {
+              height: 100vh;
+              width: 100%;
+
+            }
+            
+            .form-box {
+              width: 380px;
+              height: 480px;
+              position: relative;
+              margin: 6% auto;
+              background: #2c3338;
+              padding: 5px;
+              overflow: hidden;
+            }
+            
+            .button-box {
+              width: 220px;
+              margin: 35px auto;
+              position: relative;
+              box-shadow: 0 0 20px 9px #4a3b54;
+              border-radius: 30px;
+            }
+            
+            .toggle-btn {
+              padding: 10px 30px;
+              cursor: pointer;
+              background: transparent;
+              border: 0;
+              outline: none;
+              position: relative;
+            }
+            
+            #btn {
+              top: 0;
+              left: 0;
+              position: absolute;
+              width: 110px;
+              height: 100%;
+              background: linear-gradient(to right, #46588c, #d46e75);
+              border-radius: 30px;
+              transition: 0.5s;
+            }
+            
+            .social-icons {
+              margin: 30px auto;
+              text-align: center;
+            }
+            
+            .social-icons img {
+              width: 30px;
+              margin: 0 12px;
+            }
+            
+            .input-group {
+              top: 180px;
+              position: absolute;
+              width: 280px;
+              transition: 0.5s;
+            }
+            
+            .input-field {
+              width: 100%;
+              padding: 10px 0;
+              margin: 5px 0;
+              border-left: 0;
+              border-top: 0;
+              border-right: 0;
+              border-bottom: 1px solid #999;
+              outline: none;
+              color: whitesmoke;
+              background: transparent;
+            }
+            
+            .submit-btn {
+              width: 85%;
+              padding: 10px 30px;
+              cursor: pointer;
+              display: block;
+              margin: auto;
+              background: linear-gradient(to right, #46588c, #d46e75);
+              border: 0;
+              outline: none;
+              border-radius: 30px;
+            }
+            
+            .check-box {
+              margin: 30px 10px 30px 0;
+            }
+            
+            span {
+              color: #777;
+              font-size: 12px;
+              bottom: 68px;
+              position: absolute;
+            }
+            
+            #login {
+              left: 50px;
+            }
+            
+            #register {
+              left: 450px;
+            }
+            .card{
+                /* width: 100%;
+                height: 100%; */
+                position: absolute;
+                transform-style: preserve-3d;
+                transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                border-radius: 20px;
+                border: 2px solid #b983caad;
+
+                
+            }
+            .card-container {
+                height: 35vh;
+                width: 350px;
+                position: relative;
+                perspective: 800px;
+                padding-top: 133px;
+            }
+            .center {
+                margin: auto;
+            }
+
+            .activeButton {
+                color:white;
+            }
+
+            .submit-btn:hover {
+              color: rgba(255, 255, 255, 1);
+              box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
+            }
+            
+        </style>
+    </head>
+    <body>
+      <script>
+      var msg = '{{messageFromServer}}';
+      if(msg)
+      alert(msg);
+      </script>
+        <div class="hero card-container center">
+          <h2 class="heading" id="headingText">Login Page</h2>
+                  
+            <div class="form-box card">
+              <div class="div button-box">
+                  <div id="btn"></div>
+                  <button type="button" class="toggle-btn activeButton" id="loginButton" onclick="login()">Log In</button>
+                  <button type="button" class="toggle-btn" id = "registerButton" onclick="register()">Register</button>
+              </div>
+        
+            
+        
+              <form id="login" class="input-group" action="loginToUser">
+                  <input type="text" class="input-field" id="username" name="username" placeholder="Username" required>
+                  <input type="text" class="input-field" id = "password" name="password" placeholder="Password" required>
+                  <br><br><br>
+                  <button class="submit-btn" type="submit">Log In</button>
+              </form>
+              
+              <form id="register" class="input-group" action="registerUser">
+                  <input type="text" class="input-field" id = "name" name="name" placeholder="Name" required>
+                  <input type="text" class="input-field" id="username" name="username" placeholder="Username" required>
+                  <input type="password" class="input-field" id="password" name="password" placeholder="Password" required>
+                  <br><br><br>
+                  <button class="submit-btn" type="submit">Register</button>
+              </form>
+            </div>
+        </div> 
+        <!-- Close of hero class-->
+    </body>
+
+</html>
